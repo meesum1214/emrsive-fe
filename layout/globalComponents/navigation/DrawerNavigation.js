@@ -7,29 +7,29 @@ import CheckoutScreen from '../../screens/CheckoutScreen';
 import Header from '../Header';
 import { getCartItems } from '../../API/add';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { cartlength, count } from '../../signals/preact';
+import { count } from '../../signals/preact';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
 
-    const [cartItems, setCartItems] = useState(null)
     const [totalItems, setTotalItems] = useState(null)
+    const [cartItems, setCartItems] = useState(null)
+
+    const apiCall = async () => {
+        let userr = await AsyncStorage.getItem('emrsive-user')
+        userr && getCartItems(JSON.parse(userr).id).then((res) => {
+            setTotalItems(res.total)
+            setCartItems(res.data)
+        })
+    }
 
     useLayoutEffect(() => {
-        const apiCall = async () => {
-            let userr = await AsyncStorage.getItem('emrsive-user')
-            getCartItems(JSON.parse(userr).id).then((res) => {
-                console.log("Cart items >> ", typeof res.data)
-                setCartItems(res.data)
-                setTotalItems(res.total)
-            })
-        }
         apiCall()
     }, [count.value])
 
     return (
-        <Drawer.Navigator initialRouteName='Home'
+        <Drawer.Navigator initialRouteName="Home"
             screenOptions={({ navigation }) => ({
                 header: () => <Header navigation={navigation} total={totalItems} />
             })}

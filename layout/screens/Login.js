@@ -26,15 +26,22 @@ export default ({ navigation }) => {
 
   const onLogin = () => {
 
+    if(data.email == '' || data.password == ''){
+      Alert.alert("Please fill all the fields")
+      return
+    }
+
     // signInWithEmailAndPassword(auth, data.email, data.password)
     //   .then((res) => {
     // const user = res;
+    // console.log("Login button clicked!!")
 
     userLogin(data).then((res) => {
       AsyncStorage.setItem('emrsiveToken', res.token)
       AsyncStorage.setItem('emrsive-user', JSON.stringify(res.data))
       return res
     }).then((res) => {
+      console.log("Login response >>> ", res)
       navigation.navigate('Drawer')
     }).catch((err) => {
         console.log("error is Login >>> ", err)

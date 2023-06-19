@@ -13,27 +13,28 @@ const HomeSreen = ({ navigation }) => {
     const [plans, setPlans] = useState(null)
     const [userId, setUserId] = useState(null)
 
-    useLayoutEffect(() => {
-        const getToken = async () => {
-            let token = await AsyncStorage.getItem('emrsiveToken')
-            if (token == null) {
-                console.log('Token not found.');
-                navigation.navigate('login')
-                return
-            }
-
-            getAllPlans().then((res) => {
-                setPlans(res.data)
-                // console.log(res.data.length)
-            }).catch((err) => {
-                Alert.alert(err)
-            })
-
-            let userr = await AsyncStorage.getItem('emrsive-user')
-            setUserId(JSON.parse(userr).id)
+    const getToken = async () => {
+        let token = await AsyncStorage.getItem('emrsiveToken')
+        if (token == null) {
+            console.log('Token not found.');
+            navigation.navigate('login')
+            return
         }
+
+        let userr = await AsyncStorage.getItem('emrsive-user')
+        setUserId(JSON.parse(userr).id)
+    }
+
+    useLayoutEffect(() => {
+        getAllPlans().then((res) => {
+            setPlans(res.data)
+            // console.log(res.data.length)
+        }).catch((err) => {
+            Alert.alert(err)
+        })
+
         getToken()
-    }, [change])
+    }, [])
 
     return (
         <>

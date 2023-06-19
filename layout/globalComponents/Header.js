@@ -20,7 +20,7 @@ const Header = ({ navigation, total }) => {
                     className="w-5 h-5"
                 />
                 <View className={`absolute -top-4 -right-4  rounded-full w-8 h-8 p-0 flex items-center justify-center`}>
-                    <Text className="text-white text-lg font-bold">  {total} </Text>
+                    <Text className="text-white text-lg font-bold">  {total > 0 && total} </Text>
                 </View>
             </TouchableOpacity>
         </View>
