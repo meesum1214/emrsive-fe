@@ -6,24 +6,25 @@ export default ({ navigation, planId, userId, price, planTitle, details, change,
 
     const onAddToCart = async () => {
 
-        console.log("Cart added Data >> ", { quantity: 1, plan_id: planId, user_id: userId })
-
+        // console.log("Cart added Data >> ", { quantity: 1, plan_id: planId, user_id: userId })
+console.log("====================================================")
         try {
             let res = await addToCart({ quantity: 1, plan_id: planId, user_id: userId })
-            Alert.alert("Success!", res.message)
-            console.log('API Response >>> ', res)
-            count.value = count.value + 1
-            setChange(change + 1)
+            console.log("Cart added Response >> ", res)
+            // Alert.alert("Success!", res.message)
+            // console.log('API Response >>> ', res)
+            // count.value = count.value + 1
+            // setChange(change + 1)
         } catch (err) {
             // Alert.alert("Error!", "Something went wrong")
             console.log('Error Message >>> ', err)
-            count.value = count.value + 1
+            // count.value++
         }
-
-
-        // navigation.navigate('Cart')
     }
 
+    const handleGoToCheckout = () => {
+        navigation.navigate('checkout', { planId, userId, price, planTitle, details })
+    }
 
     return (
         <View className="bg-white w-80 rounded-3xl mb-5">
@@ -51,7 +52,7 @@ export default ({ navigation, planId, userId, price, planTitle, details, change,
                     </TouchableHighlight>
 
                     <TouchableHighlight
-                        onPress={() => navigation.navigate('Checkout')}
+                        onPress={handleGoToCheckout}
                         className="bg-tertiary items-center w-1/2 p-4 border-r border-r-white rounded-br-3xl"
                     >
                         <Text className="text-lg text-white font-semibold"> Buy it Now </Text>
