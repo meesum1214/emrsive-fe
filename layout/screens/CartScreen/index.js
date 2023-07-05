@@ -7,8 +7,8 @@ import { count } from '../../signals/preact';
 
 const CartScreen = ({ navigation, route }) => {
 
-    const { cartItems } = route.params
-    // const [cartItems, setCartItems] = useState(null)
+    // const { cartItems } = route.params
+    const [cartItems, setCartItems] = useState(null)
 
     const [quantity, setQuantity] = useState(1)
     const [items, setItems] = useState([])
@@ -21,10 +21,10 @@ const CartScreen = ({ navigation, route }) => {
         setUserid(JSON.parse(userr).id)
 
         // console.log("========= get Cart Items Called ========")
-        // getCartItems(JSON.parse(userr).id).then((res) => {
-        //     setCartItems(res.data)
-        //     // console.log("Cart Items >>>> ", res.data)
-        // })
+        getCartItems(JSON.parse(userr).id).then((res) => {
+            setCartItems(res.data)
+            // console.log("Cart Items >>>> ", res.data)
+        })
     }
 
     useEffect(() => {
@@ -54,6 +54,10 @@ const CartScreen = ({ navigation, route }) => {
             console.log(err)
             Alert.alert(err)
         })
+    }
+
+    const handleGoToMultipleCheckout = () => {
+        navigation.navigate('MultipleCheckout', { cartItems })
     }
 
     return (
@@ -121,7 +125,7 @@ const CartScreen = ({ navigation, route }) => {
             </ScrollView>
 
             <TouchableOpacity className="bg-tertiary absolute bottom-0 w-full h-16 justify-center items-center"
-                onPress={() => navigation.navigate('Checkout')}
+                onPress={handleGoToMultipleCheckout}
             >
                 <Text className="text-white text-2xl font-bold">Checkout</Text>
             </TouchableOpacity>

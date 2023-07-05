@@ -2,9 +2,10 @@ import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Input } from 'native-base'
 
-const CheckoutScreen = ({ navigation, route }) => {
+const MultipleCheckoutScreen = ({ navigation, route }) => {
 
-    const { planId, userId, price, planTitle } = route.params;
+    const { cartItems } = route.params;
+    console.log("Cart Items >>> ", cartItems)
 
     return (
         <View className="pb-20">
@@ -15,8 +16,8 @@ const CheckoutScreen = ({ navigation, route }) => {
                 </View>
 
                 <View className="p-4 bg-gray-200 flex-row justify-between">
-                    <Text className="text-xl font-bold">{planTitle} Shopify Plan</Text>
-                    <Text className="text-xl font-bold">${price}</Text>
+                    <Text className="text-xl font-bold">{cartItems[0].Plan.name} Shopify Plan</Text>
+                    <Text className="text-xl font-bold">${cartItems[0].Plan.price}</Text>
                 </View>
 
                 <View className="p-4">
@@ -67,7 +68,7 @@ const CheckoutScreen = ({ navigation, route }) => {
                         <View className="border border-gray-300 rounded-t-lg bg-gray-200 p-3">
                             <Text className="text-2xl font-semibold mb-3">Credit / Debit Card</Text>
 
-                            <Image source={require('../../assets/card.png')} className="w-28 h-12" />
+                            <Image source={require('../assets/card.png')} className="w-28 h-12" />
                         </View>
 
                         <View className="p-3">
@@ -80,7 +81,7 @@ const CheckoutScreen = ({ navigation, route }) => {
 
                 <View className="p-3 mb-2">
                     <TouchableOpacity className="bg-primary h-14 justify-center items-center rounded-lg">
-                        <Text className="text-white text-xl font-bold">Place Order ${price}</Text>
+                        <Text className="text-white text-xl font-bold">Place Order ${cartItems[0].Plan.price}</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -88,4 +89,4 @@ const CheckoutScreen = ({ navigation, route }) => {
     )
 }
 
-export default CheckoutScreen
+export default MultipleCheckoutScreen

@@ -1,4 +1,4 @@
-import { View, ScrollView, Alert } from 'react-native'
+import { View, ScrollView, Alert, Text } from 'react-native'
 import { useLayoutEffect, useState } from 'react'
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import React from 'react'
@@ -28,7 +28,7 @@ const HomeSreen = ({ navigation }) => {
     useLayoutEffect(() => {
         getAllPlans().then((res) => {
             setPlans(res.data)
-            // console.log(res.data.length)
+            // console.log(res.data)
         }).catch((err) => {
             Alert.alert(err)
         })

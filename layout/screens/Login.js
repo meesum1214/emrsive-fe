@@ -4,6 +4,7 @@ import { Alert, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpaci
 import { auth } from "../firebase/config"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { userLogin } from "../API/add"
+import axios from "axios"
 
 
 export default ({ navigation }) => {
@@ -26,15 +27,14 @@ export default ({ navigation }) => {
 
   const onLogin = () => {
 
-    if(data.email == '' || data.password == ''){
-      Alert.alert("Please fill all the fields")
+    if (data.email == '' || data.password == '') {
+      Alert.alert("Empty Feild!", "Please fill all the fields")
       return
     }
 
     // signInWithEmailAndPassword(auth, data.email, data.password)
     //   .then((res) => {
     // const user = res;
-    // console.log("Login button clicked!!")
 
     userLogin(data).then((res) => {
       AsyncStorage.setItem('emrsiveToken', res.token)
@@ -44,9 +44,9 @@ export default ({ navigation }) => {
       console.log("Login response >>> ", res)
       navigation.navigate('Drawer')
     }).catch((err) => {
-        console.log("error is Login >>> ", err)
-        Alert.alert(err)
-      })
+      console.log("error is Login >>> ", err)
+      Alert.alert(err)
+    })
     // })
     // .catch((error) => {
     //   const errorCode = error.code;
@@ -55,7 +55,6 @@ export default ({ navigation }) => {
     //   Alert.alert(error.message)
     // });
   }
-
 
   return (
     <SafeAreaView style={styles.backgroundStyle}>

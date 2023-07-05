@@ -4,26 +4,20 @@ import { count } from '../../signals/preact'
 
 export default ({ navigation, planId, userId, price, planTitle, details, change, setChange }) => {
 
-    const onAddToCart = async () => {
-
-        // console.log("Cart added Data >> ", { quantity: 1, plan_id: planId, user_id: userId })
-console.log("====================================================")
-        try {
-            let res = await addToCart({ quantity: 1, plan_id: planId, user_id: userId })
-            console.log("Cart added Response >> ", res)
-            // Alert.alert("Success!", res.message)
+    const onAddToCart = () => {
+        addToCart({ quantity: 1, plan_id: planId, user_id: userId }).then((res) => {
+            // console.log("Cart added Response >> ", res.message)
+            Alert.alert("Success!", "Cart Item Added Successfully!")
             // console.log('API Response >>> ', res)
-            // count.value = count.value + 1
-            // setChange(change + 1)
-        } catch (err) {
-            // Alert.alert("Error!", "Something went wrong")
+            count.value = count.value + 1
+            setChange(change + 1)
+        }).catch((err) => {
             console.log('Error Message >>> ', err)
-            // count.value++
-        }
+        })
     }
 
     const handleGoToCheckout = () => {
-        navigation.navigate('checkout', { planId, userId, price, planTitle, details })
+        navigation.navigate('Checkout', { planId, userId, price, planTitle, details })
     }
 
     return (
