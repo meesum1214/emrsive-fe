@@ -4,11 +4,10 @@ import { count } from '../../signals/preact'
 
 export default ({ navigation, planId, userId, price, planTitle, details, change, setChange }) => {
 
-    const onAddToCart = () => {
+    const onAddToCart = async () => {
         addToCart({ quantity: 1, plan_id: planId, user_id: userId }).then((res) => {
             // console.log("Cart added Response >> ", res.message)
             Alert.alert("Success!", "Cart Item Added Successfully!")
-            // console.log('API Response >>> ', res)
             count.value = count.value + 1
             setChange(change + 1)
         }).catch((err) => {

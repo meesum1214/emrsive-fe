@@ -15,9 +15,13 @@ export const getAllPlans = async () => {
     return response.data
 }
 
-export const addToCart = async (data) => {
-    let response = await API.post(`/cart/add-cart-item`, data)
-    return response.data
+// export const addToCart = async (data) => {
+//     let response = await API.post(`/cart/add-cart-item`, data)
+//     return response.data
+// }
+
+export const addToCart = (data) => {
+    return API.post(`/cart/add-cart-item`, data)
 }
 
 export const getCartItems = async (userId) => {

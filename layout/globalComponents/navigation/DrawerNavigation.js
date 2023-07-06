@@ -3,12 +3,12 @@ import HomeSreen from '../../screens/HomeSreen'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import CustomDrawer from './CustomDrawer';
 import CartScreen from '../../screens/CartScreen';
-import CheckoutScreen from '../../screens/CheckoutScreen';
+// import CheckoutScreen from '../../screens/CheckoutScreen';
 import Header from '../Header';
 import { getCartItems } from '../../API/add';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { count } from '../../signals/preact';
-import MultipleCheckoutScreen from '../../screens/MultipleCheckoutScreen';
+// import MultipleCheckoutScreen from '../../screens/MultipleCheckoutScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -38,8 +38,8 @@ const DrawerNavigation = () => {
         >
             <Drawer.Screen name="Home" component={HomeSreen} />
             <Drawer.Screen name="Cart" component={CartScreen} initialParams={{ cartItems }} />
-            <Drawer.Screen name="Checkout" component={CheckoutScreen} />
-            <Drawer.Screen name="MultipleCheckout" component={MultipleCheckoutScreen} />
+            {/* <Drawer.Screen name="Checkout" component={CheckoutScreen} />
+            <Drawer.Screen name="MultipleCheckout" component={MultipleCheckoutScreen} /> */}
         </Drawer.Navigator>
     )
 }

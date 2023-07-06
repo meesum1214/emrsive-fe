@@ -9,12 +9,9 @@ const CartScreen = ({ navigation, route }) => {
 
     // const { cartItems } = route.params
     const [cartItems, setCartItems] = useState(null)
-
-    const [quantity, setQuantity] = useState(1)
-    const [items, setItems] = useState([])
-
     const [userid, setUserid] = useState(null)
     const [state, setState] = useState(0)
+    const [subTotal, setSubTotal] = useState(null)
 
     const getCart = async () => {
         let userr = await AsyncStorage.getItem('emrsive-user')
@@ -24,6 +21,7 @@ const CartScreen = ({ navigation, route }) => {
         getCartItems(JSON.parse(userr).id).then((res) => {
             setCartItems(res.data)
             // console.log("Cart Items >>>> ", res.data)
+            setSubTotal(res.data.reduce((a, b) => a + (b['Plan']['price'] * b['quantity']), 0))
         })
     }
 
@@ -57,7 +55,7 @@ const CartScreen = ({ navigation, route }) => {
     }
 
     const handleGoToMultipleCheckout = () => {
-        navigation.navigate('MultipleCheckout', { cartItems })
+        navigation.navigate('MultipleCheckout', { cartItems, subTotal })
     }
 
     return (
@@ -83,17 +81,14 @@ const CartScreen = ({ navigation, route }) => {
                                 {
                                     cartItems?.map((item, index) => (
                                         <View key={index} className="w-full">
-                                            <Text className="text-lg text-gray-600 font-bold">{item.Plan.name} Shopify Plan</Text>
+                                            <View className="flex-row justify-between mb-2">
+                                                <Text className="text-lg text-gray-600 font-bold">{item.Plan.name} Shopify Plan</Text>
+                                                <TouchableOpacity onPress={() => onRemove(item.id)}>
+                                                    <Image source={require('../../assets/minus.png')} className="w-6 h-6" />
+                                                </TouchableOpacity>
+                                            </View>
                                             <View className="w-full flex-row justify-between items-center">
-                                                <View className="flex-row items-center">
-                                                    <TouchableOpacity onPress={() => onRemove(item.id)}>
-                                                        <Image source={require('../../assets/minus.png')} className="w-6 h-6" />
-                                                    </TouchableOpacity>
-                                                    <Text className="text-lg text-gray-600">Quantity: {item.quantity}x</Text>
-                                                    {/* <TouchableOpacity onPress={() => setQuantity(quantity + 1)}>
-                                            <Image source={require('../../assets/add.png')} className="w-9 h-9" />
-                                        </TouchableOpacity> */}
-                                                </View>
+                                                <Text className="text-lg text-gray-600">Quantity: {item.quantity}x</Text>
                                                 <Text className="text-lg text-green-700">${item.quantity * item.Plan.price}</Text>
                                             </View>
                                             <Divider my={3} />
@@ -104,7 +99,7 @@ const CartScreen = ({ navigation, route }) => {
 
                             <View className="p-3 flex-row justify-between items-center">
                                 <Text className="text-xl font-bold mb-6">Subtotal</Text>
-                                <Text className="text-xl font-bold mb-6">${quantity * items[0] ? items[0].price : 0}</Text>
+                                <Text className="text-xl font-bold mb-6">${subTotal}</Text>
                             </View>
 
                             <View className="p-3 items-end mb-16">

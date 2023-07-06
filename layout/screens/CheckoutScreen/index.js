@@ -4,7 +4,7 @@ import { Input } from 'native-base'
 
 const CheckoutScreen = ({ navigation, route }) => {
 
-    const { planId, userId, price, planTitle } = route.params;
+    const { price, planTitle } = route.params;
 
     return (
         <View className="pb-20">

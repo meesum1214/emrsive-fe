@@ -6,6 +6,8 @@ import SignUp from './layout/screens/SignUp';
 import SplashScreen from './layout/screens/SplashScreen';
 import DrawerNavigation from './layout/globalComponents/navigation/DrawerNavigation';
 import { NativeBaseProvider } from 'native-base';
+import CheckoutScreen from './layout/screens/CheckoutScreen';
+import MultipleCheckoutScreen from './layout/screens/MultipleCheckoutScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +25,8 @@ function App() {
           <Stack.Screen name="Drawer" component={DrawerNavigation} />
           <Stack.Screen name="login" component={Login} />
           <Stack.Screen name="signup" component={SignUp} />
+          <Stack.Screen name="Checkout" component={CheckoutScreen} />
+          <Stack.Screen name="MultipleCheckout" component={MultipleCheckoutScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
