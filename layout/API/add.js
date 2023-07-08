@@ -39,3 +39,16 @@ export const emptyCart = async (userId) => {
     let response = await API.delete(`/cart/all?user_id=${userId}`)
     return response.data
 }
+
+export const placeOrder = async (orderDetails, paymentInfo) => {
+    let response = await API.post(`/order/create`, {
+        ...orderDetails,
+        paymentDetails: JSON.stringify(paymentInfo)
+    })
+    return response.data
+}
+
+export const getOrders = async (userId) => {
+    let response = await API.get(`/order/get/${userId}`)
+    return response.data
+}

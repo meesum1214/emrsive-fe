@@ -8,6 +8,7 @@ import Header from '../Header';
 import { getCartItems } from '../../API/add';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { count } from '../../signals/preact';
+import orderScreen from '../../screens/orderScreen';
 // import MultipleCheckoutScreen from '../../screens/MultipleCheckoutScreen';
 
 const Drawer = createDrawerNavigator();
@@ -38,8 +39,7 @@ const DrawerNavigation = () => {
         >
             <Drawer.Screen name="Home" component={HomeSreen} />
             <Drawer.Screen name="Cart" component={CartScreen} initialParams={{ cartItems }} />
-            {/* <Drawer.Screen name="Checkout" component={CheckoutScreen} />
-            <Drawer.Screen name="MultipleCheckout" component={MultipleCheckoutScreen} /> */}
+            <Drawer.Screen name="Your Orders" component={orderScreen} />
         </Drawer.Navigator>
     )
 }

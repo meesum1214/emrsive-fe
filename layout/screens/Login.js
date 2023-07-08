@@ -25,7 +25,7 @@ export default ({ navigation }) => {
     password: '',
   })
 
-  const onLogin = () => {
+  const onLogin = async () => {
 
     if (data.email == '' || data.password == '') {
       Alert.alert("Empty Feild!", "Please fill all the fields")
@@ -37,6 +37,7 @@ export default ({ navigation }) => {
     // const user = res;
 
     userLogin(data).then((res) => {
+      console.log("user Data", res.data)
       AsyncStorage.setItem('emrsiveToken', res.token)
       AsyncStorage.setItem('emrsive-user', JSON.stringify(res.data))
       return res
@@ -45,8 +46,11 @@ export default ({ navigation }) => {
       navigation.navigate('Drawer')
     }).catch((err) => {
       console.log("error is Login >>> ", err)
-      Alert.alert(err)
+      Alert.alert("Error", err.response.data.message)
     })
+    
+
+
     // })
     // .catch((error) => {
     //   const errorCode = error.code;

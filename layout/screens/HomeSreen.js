@@ -13,6 +13,7 @@ const HomeSreen = ({ navigation }) => {
     const [plans, setPlans] = useState(null)
     const [userId, setUserId] = useState(null)
 
+    
     const getToken = async () => {
         let token = await AsyncStorage.getItem('emrsiveToken')
         if (token == null) {
@@ -20,7 +21,7 @@ const HomeSreen = ({ navigation }) => {
             navigation.navigate('login')
             return
         }
-
+        
         let userr = await AsyncStorage.getItem('emrsive-user')
         setUserId(JSON.parse(userr).id)
     }

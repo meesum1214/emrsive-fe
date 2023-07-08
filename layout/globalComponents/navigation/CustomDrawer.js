@@ -20,6 +20,7 @@ const CustomDrawer = (props) => {
 
     const onLogout = () => {
         AsyncStorage.removeItem('emrsiveToken')
+        AsyncStorage.removeItem('emrsive-user')
         props.navigation.navigate('login')
     }
 
