@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import {
     DrawerContentScrollView,
@@ -7,7 +7,10 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CustomDrawer = (props) => {
-
+    const { state, descriptors, navigation } = props;
+    const filteredState = state.routes.filter(
+        (route) => route.name !== 'Orders Details'
+    );
     const [user, setUser] = useState(null)
 
     useLayoutEffect(() => {
@@ -39,8 +42,29 @@ const CustomDrawer = (props) => {
                 </View>
             </View>
 
-            <DrawerContentScrollView>
-                <DrawerItemList {...props} />
+            <DrawerContentScrollView {...props}>
+                <View>
+                    {filteredState.map((route, index) => {
+                        const { options } = descriptors[route.key];
+                        const label =
+                            options.drawerLabel !== undefined
+                                ? options.drawerLabel
+                                : options.title !== undefined
+                                    ? options.title
+                                    : route.name;
+
+                        return (
+                            <TouchableOpacity
+                                key={index}
+                                onPress={() => navigation.navigate(route.name)}
+                                style={styles.drawerItem}
+                            >
+                                <Text style={styles.drawerLabel}>{label}</Text>
+                            </TouchableOpacity>
+                        );
+                    })}
+                </View>
+                {/* <DrawerItemList {...props} /> */}
             </DrawerContentScrollView>
 
             <TouchableOpacity className="bg-gray-400 m-4 rounded-lg p-2"
@@ -51,5 +75,16 @@ const CustomDrawer = (props) => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    drawerItem: {
+      paddingVertical: 10,
+      paddingHorizontal: 16,
+    },
+    drawerLabel: {
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+  });
 
 export default CustomDrawer

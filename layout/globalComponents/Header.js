@@ -1,7 +1,7 @@
 import { View, Image, TouchableOpacity, Text } from 'react-native'
 import React from 'react'
 
-const Header = ({ navigation, total }) => {
+const Header = ({ navigation, total = 0 }) => {
     return (
         <View className="px-6 py-4 bg-secondary flex-row justify-between items-center">
             <TouchableOpacity onPress={() => navigation.openDrawer()}>

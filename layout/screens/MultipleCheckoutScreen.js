@@ -37,7 +37,7 @@ const MultipleCheckoutScreen = ({ navigation, route }) => {
         let userr = await AsyncStorage.getItem('emrsive-user')
         setOrderData({
             ...orderData,
-            orderDetails: JSON.stringify(cartItems),
+            orderDetails: JSON.stringify({cartItems, subTotal}),
             user_id: JSON.parse(userr).id
         })
         setUserId(JSON.parse(userr).id)
@@ -88,7 +88,11 @@ const MultipleCheckoutScreen = ({ navigation, route }) => {
             Alert.alert("Please enter phone number!")
             return
         }
-        console.log("Payment Details here ----------------------- ", paymentInfo)
+        if (orderData.additionalInfo == null) {
+            Alert.alert("Please enter additional info!")
+            return
+        }
+        // console.log("Payment Details here ----------------------- ", paymentInfo)
         if (paymentInfo.cardNumber == null || paymentInfo.cardHolderName == null || paymentInfo.cvvNumber == null) {
             Alert.alert("Please complete payment details!")
             return
