@@ -27,11 +27,11 @@ export default ({ navigation }) => {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <TouchableOpacity className="bg-green-300 rounded-full px-2 py-1" onClick={() => {
+            {/* <TouchableOpacity className="bg-green-300 rounded-full px-2 py-1" onClick={() => {
                 setChange(change + 1)
             }}>
                 <Text className="font-semibold text-lg">Refresh</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <View className="flex-1 justify-center items-center w-full py-4">
                 {
                     orders.length > 0 ?

@@ -51,10 +51,10 @@ export default ({ route }) => {
                                         <Text className="font-semibold text-xl">Your Plan:</Text>
                                         <Text className="font-semibold text-lg">{Plan.name} Shopify Plan</Text>
                                     </View>
-                                    <View className="flex-row justify-between items-center">
+                                    {/* <View className="flex-row justify-between items-center">
                                         <Text className="font-semibold text-xl">Status:</Text>
                                         <Text className="font-semibold text-lg">{status}</Text>
-                                    </View>
+                                    </View> */}
                                     <Divider my="2" _light={{
                                         bg: "muted.800"
                                     }} />

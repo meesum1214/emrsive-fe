@@ -24,7 +24,7 @@ const SignUp = ({ navigation }) => {
         lastName: '',
         email: '',
         password: '',
-        role_id: '1'
+        role_id: '2'
     })
 
     const onSignUp = async () => {
