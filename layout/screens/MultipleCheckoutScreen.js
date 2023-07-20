@@ -2,12 +2,13 @@ import { View, Text, ScrollView, Image, TouchableOpacity, TextInput, Alert } fro
 import React, { useEffect, useState } from 'react'
 import { Input } from 'native-base'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { emptyCart, placeOrder } from '../API/add';
+import { addOrderDetails, emptyCart, placeOrder } from '../API/add';
 import { count } from '../signals/preact';
 
 const MultipleCheckoutScreen = ({ navigation, route }) => {
 
     const { cartItems, subTotal } = route.params;
+    console.log("Cart Items >>>> ", cartItems)
     const [userId, setUserId] = useState(null)
     const [paymentInfo, setPaymentInfo] = useState({
         cardNumber: null,
@@ -16,7 +17,7 @@ const MultipleCheckoutScreen = ({ navigation, route }) => {
     })
 
     const [orderData, setOrderData] = useState({
-        orderDetails: null,
+        orderPrice: null,
         email: null,
         firstName: null,
         lastName: null,
@@ -37,7 +38,7 @@ const MultipleCheckoutScreen = ({ navigation, route }) => {
         let userr = await AsyncStorage.getItem('emrsive-user')
         setOrderData({
             ...orderData,
-            orderDetails: JSON.stringify({cartItems, subTotal}),
+            orderPrice: subTotal,
             user_id: JSON.parse(userr).id
         })
         setUserId(JSON.parse(userr).id)
@@ -103,6 +104,13 @@ const MultipleCheckoutScreen = ({ navigation, route }) => {
 
     const onSubmit = () => {
         placeOrder(orderData, paymentInfo).then((res) => {
+
+            for (let i = 0; i < cartItems.length; i++) {
+                addOrderDetails({ status: "Pending", plan_id: cartItems[i].plan_id, order_id: res.data.id }).then((res) => {
+                    console.log("Order Details >>>> ", res.message)
+                })
+            }
+
             Alert.alert("Success!", res.message)
             emptyCart(userId).then((res) => {
                 Alert.alert("Success!", res.message)

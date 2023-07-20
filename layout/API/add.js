@@ -52,3 +52,14 @@ export const getOrders = async (userId) => {
     let response = await API.get(`/order/get/${userId}`)
     return response.data
 }
+
+// ================== Order Details ==================
+export const addOrderDetails = async (body) => {
+    let response = await API.post(`/orderDetails/`, body)
+    return response.data
+}
+
+export const getOrderDetails = async (orderId) => {
+    let response = await API.get(`/orderDetails/${orderId}`)
+    return response.data
+}

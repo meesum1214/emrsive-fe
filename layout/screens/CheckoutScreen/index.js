@@ -2,12 +2,12 @@ import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from 'react-na
 import React, { useState, useEffect } from 'react'
 import { Input } from 'native-base'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { emptyCart, placeOrder } from '../../API/add';
+import { addOrderDetails, emptyCart, placeOrder } from '../../API/add';
 import { count } from '../../signals/preact';
 
 const CheckoutScreen = ({ navigation, route }) => {
 
-    const { price, planTitle } = route.params;
+    const { price, planTitle, planId } = route.params;
 
     const [userId, setUserId] = useState(null)
     const [paymentInfo, setPaymentInfo] = useState({
@@ -38,7 +38,7 @@ const CheckoutScreen = ({ navigation, route }) => {
         let userr = await AsyncStorage.getItem('emrsive-user')
         setOrderData({
             ...orderData,
-            orderDetails: JSON.stringify({ subTotal: price, planTitle }),
+            orderPrice: price,
             user_id: JSON.parse(userr).id
         })
         setUserId(JSON.parse(userr).id)
@@ -104,6 +104,11 @@ const CheckoutScreen = ({ navigation, route }) => {
 
     const onSubmit = () => {
         placeOrder(orderData, paymentInfo).then((res) => {
+
+            addOrderDetails({ status: "Pending", plan_id: planId, order_id: res.data.id }).then((res) => {
+                console.log("Order Details >>>> ", res.message)
+            })
+
             Alert.alert("Success!", res.message)
             count.value = count.value + 1
             navigation.navigate('Your Orders')
