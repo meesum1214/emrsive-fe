@@ -59,7 +59,7 @@ const CustomDrawer = (props) => {
                                 onPress={() => navigation.navigate(route.name)}
                                 style={styles.drawerItem}
                             >
-                                <Text style={styles.drawerLabel}>{label}</Text>
+                                <Text style={styles.drawerLabel} className="text-black">{label}</Text>
                             </TouchableOpacity>
                         );
                     })}

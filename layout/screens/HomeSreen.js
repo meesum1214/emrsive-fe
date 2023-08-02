@@ -6,14 +6,14 @@ import PlanCard from './HomeScreen/PlanCard'
 import Footer from '../globalComponents/Footer'
 import { getAllPlans } from '../API/add'
 
-const HomeSreen = ({ navigation }) => {
-
+const HomeSreen = ({ navigation, route }) => {
+    const { setLoaderState } = route.params
     const { change, setChange } = useState(0)
 
     const [plans, setPlans] = useState(null)
     const [userId, setUserId] = useState(null)
 
-    
+
     const getToken = async () => {
         let token = await AsyncStorage.getItem('emrsiveToken')
         if (token == null) {
@@ -21,7 +21,7 @@ const HomeSreen = ({ navigation }) => {
             navigation.navigate('login')
             return
         }
-        
+
         let userr = await AsyncStorage.getItem('emrsive-user')
         setUserId(JSON.parse(userr).id)
     }
@@ -30,6 +30,7 @@ const HomeSreen = ({ navigation }) => {
         getAllPlans().then((res) => {
             setPlans(res.data)
             // console.log(res.data)
+            setLoaderState(false)
         }).catch((err) => {
             Alert.alert(err)
         })

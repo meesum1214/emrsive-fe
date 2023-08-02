@@ -55,6 +55,11 @@ const CartScreen = ({ navigation, route }) => {
     }
 
     const handleGoToMultipleCheckout = () => {
+        if(cartItems.length == 0) {
+            Alert.alert("Your Cart is empty!")
+            return
+        }
+
         navigation.navigate('MultipleCheckout', { cartItems, subTotal })
     }
 
@@ -64,7 +69,7 @@ const CartScreen = ({ navigation, route }) => {
             <ScrollView>
 
                 <View className="p-3">
-                    <Text className="text-xl font-bold">DELIVERY TIME</Text>
+                    <Text className="text-xl text-black font-bold">DELIVERY TIME</Text>
                     <View className="flex-row items-center mt-3">
                         <Image source={require('../../assets/clock.png')} className="w-10 h-10 mr-3" />
                         <Text className="text-lg text-gray-600">ASAP</Text>
@@ -113,7 +118,7 @@ const CartScreen = ({ navigation, route }) => {
                         </View>
                         :
                         <View className="flex-1 justify-center items-center">
-                            <Text className="text-xl font-bold">Cart is Empty</Text>
+                            <Text className="text-xl text-black font-bold">Cart is Empty</Text>
                         </View>
                 }
 

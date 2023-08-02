@@ -122,16 +122,16 @@ const CheckoutScreen = ({ navigation, route }) => {
 
         <ScrollView className="p-4">
             <View className="p-4">
-                <Text className="text-xl font-bold mb-3">Order Summary</Text>
+                <Text className="text-xl text-black font-bold mb-3">Order Summary</Text>
             </View>
 
             <View className="p-4 bg-gray-200 flex-row justify-between">
-                <Text className="text-xl font-bold">{planTitle} Shopify Plan</Text>
-                <Text className="text-xl font-bold">${price}</Text>
+                <Text className="text-xl text-black font-bold">{planTitle} Shopify Plan</Text>
+                <Text className="text-xl text-black font-bold">${price}</Text>
             </View>
 
             <View className="p-4">
-                <Text className="text-xl font-bold mb-3">Customer Infornmation</Text>
+                <Text className="text-xl text-black font-bold mb-3">Customer Information</Text>
                 <Input
                     rounded={10}
                     backgroundColor="gray.200"
@@ -142,7 +142,7 @@ const CheckoutScreen = ({ navigation, route }) => {
             </View>
 
             <View className="p-4">
-                <Text className="text-xl font-bold mb-3">Billing Details</Text>
+                <Text className="text-xl text-black font-bold mb-3">Billing Details</Text>
 
                 <View className="flex-row justify-between">
                     <Input
@@ -163,7 +163,7 @@ const CheckoutScreen = ({ navigation, route }) => {
 
                 <View className="flex-row justify-between">
                     <Input mb={4} rounded={10} backgroundColor="gray.200" placeholder="Address*" w="49%" onChangeText={(e) => setOrderData({ ...orderData, address: e })} />
-                    <Input mb={4} rounded={10} backgroundColor="gray.200" placeholder="Appartment*" w="49%" onChangeText={(e) => setOrderData({ ...orderData, appartment: e })} />
+                    <Input mb={4} rounded={10} backgroundColor="gray.200" placeholder="Apartment*" w="49%" onChangeText={(e) => setOrderData({ ...orderData, appartment: e })} />
                 </View>
 
                 <View className="flex-row justify-between">
@@ -178,16 +178,16 @@ const CheckoutScreen = ({ navigation, route }) => {
             </View>
 
             <View className="p-4">
-                <Text className="text-xl font-bold mb-3">Additional Information</Text>
+                <Text className="text-xl text-black font-bold mb-3">Additional Information</Text>
                 <Input mb={4} rounded={10} backgroundColor="gray.200" placeholder="Additional Note*" w="100%" onChangeText={(e) => setOrderData({ ...orderData, additionalInfo: e })} />
             </View>
 
             <View className="p-4">
-                <Text className="text-xl font-bold mb-3">Payment</Text>
+                <Text className="text-xl text-black font-bold mb-3">Payment</Text>
 
                 <View className="border border-gray-300 rounded-lg">
                     <View className="border border-gray-300 rounded-t-lg bg-gray-200 p-3">
-                        <Text className="text-2xl font-semibold mb-3">Credit / Debit Card</Text>
+                        <Text className="text-2xl text-black font-semibold mb-3">Credit / Debit Card</Text>
                         <Image source={require('../../assets/card.png')} className="w-28 h-12" />
                     </View>
 

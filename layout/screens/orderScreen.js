@@ -37,7 +37,7 @@ export default ({ navigation }) => {
                     orders.length > 0 ?
                         orders.map((item, i) => (
                             <View key={i} className="w-[95%] bg-orange-200 shadow-2xl rounded-3xl p-4 mb-2">
-                                <Text className="text-center text-2xl font-bold">Order Details</Text>
+                                <Text className="text-center text-2xl text-black font-bold">Order Details</Text>
                                 <Divider my="2" _light={{
                                     bg: "muted.800"
                                 }} _dark={{
@@ -69,7 +69,7 @@ export default ({ navigation }) => {
                             </View>
                         ))
                         :
-                        <Text className="text-center text-2xl font-bold">No Orders Yet</Text>
+                        <Text className="text-center text-black text-2xl font-bold">No Orders Yet</Text>
                 }
             </View>
         </ScrollView>

@@ -31,7 +31,7 @@ export default ({ navigation, planId, userId, price, planTitle, details, change,
                 <View className="p-3 text-xl">
                     {
                         details.map(({ content }, i) => (
-                            <Text key={i} className="text-lg leading-9">{content}</Text>
+                            <Text key={i} className="text-lg text-black leading-9">{content}</Text>
                         ))
                     }
                 </View>
