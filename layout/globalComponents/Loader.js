@@ -21,7 +21,7 @@ export default ({ state }) => {
         outputRange: ['0deg', '360deg'],
     });
     return (
-        state && <View className="absolute top-0 w-screen h-screen z-[1000] bg-[#ffffffad] justify-center items-center">
+        <View className="absolute top-0 w-screen h-screen z-[1000] bg-[#ffffffad] justify-center items-center">
             <Animated.Image
                 source={require('../assets/favicon.png')}
                 style={[styles.spinner, { transform: [{ rotate: spin }] }]}

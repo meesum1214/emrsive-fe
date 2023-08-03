@@ -29,6 +29,8 @@ const SignUp = ({ navigation }) => {
 
     const onSignUp = async () => {
         // console.log(data)
+        // lowercase email
+        data.email = data.email.toLowerCase()
 
         createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((res) => {

@@ -63,3 +63,14 @@ export const getOrderDetails = async (orderId) => {
     let response = await API.get(`/orderDetails/${orderId}`)
     return response.data
 }
+
+// ================== Reviews ==================
+export const addReview = async (body) => {
+    let response = await API.post(`/reviews/`, body)
+    return response.data
+}
+
+export const getReviews = async () => {
+    let response = await API.get(`/reviews/`)
+    return response.data
+}

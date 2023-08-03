@@ -32,6 +32,9 @@ export default ({ navigation }) => {
       return
     }
 
+    // lowercase email
+    data.email = data.email.toLowerCase()
+
     // signInWithEmailAndPassword(auth, data.email, data.password)
     //   .then((res) => {
     // const user = res;

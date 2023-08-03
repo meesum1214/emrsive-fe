@@ -5,9 +5,10 @@ import React from 'react'
 import PlanCard from './HomeScreen/PlanCard'
 import Footer from '../globalComponents/Footer'
 import { getAllPlans } from '../API/add'
+// import withLoader from '../globalComponents/withLoader'
 
-const HomeSreen = ({ navigation, route }) => {
-    const { setLoaderState } = route.params
+const HomeSreen = ({ navigation }) => {
+    // const { setLoaderState } = route.params
     const { change, setChange } = useState(0)
 
     const [plans, setPlans] = useState(null)
@@ -15,6 +16,11 @@ const HomeSreen = ({ navigation, route }) => {
 
 
     const getToken = async () => {
+        // setIsLoadingFunc(true);
+
+        // setTimeout(() => {
+        //     setIsLoadingFunc(false);
+        // }, 2000); // Simulate 2 seconds loading time
         let token = await AsyncStorage.getItem('emrsiveToken')
         if (token == null) {
             console.log('Token not found.');
@@ -30,7 +36,7 @@ const HomeSreen = ({ navigation, route }) => {
         getAllPlans().then((res) => {
             setPlans(res.data)
             // console.log(res.data)
-            setLoaderState(false)
+            // setLoaderState(false)
         }).catch((err) => {
             Alert.alert(err)
         })
