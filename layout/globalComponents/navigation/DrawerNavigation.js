@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from 'react'
-import HomeSreen from '../../screens/HomeSreen'
+import HomeSreen from '../../screens/HomeScreen'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import CustomDrawer from './CustomDrawer';
 import CartScreen from '../../screens/CartScreen';

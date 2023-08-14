@@ -80,11 +80,13 @@ export default ({ navigation }) => {
           <TextInput
             style={styles.input}
             value={data.email}
+            placeholderTextColor="gray"
             onChangeText={(e) => setData({ ...data, email: e })}
             placeholder="Enter Email"
-          />
+            />
 
           <TextInput
+            placeholderTextColor="gray"
             style={styles.input}
             value={data.password}
             onChangeText={(e) => setData({ ...data, password: e })}
@@ -141,6 +143,7 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     borderBottomColor: '#A5A5A5',
     borderBottomWidth: 2,
+    color: '#4D4D4D',
   },
   button: {
     alignItems: 'center',

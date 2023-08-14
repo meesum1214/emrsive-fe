@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <View className="flex-row rounded-b-3xl">
+        <View className="flex-row rounded-b-3xl absolute bottom-0">
             <TouchableHighlight
                 onPress={() => Linking.openURL('mailto:Support@emrsive.com')}
                 className="bg-secondary items-center w-1/2 p-4 border-r border-r-white"
