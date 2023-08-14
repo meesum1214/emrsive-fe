@@ -69,7 +69,7 @@ export default ({ navigation }) => {
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Image
           style={styles.tinyLogo}
-          source={{ uri: 'https://eu6vpnsdhno.exactdn.com/wp-content/uploads/2022/09/Emrsive_logo-6-300x110.png?strip=all&lossy=1&ssl=1' }}
+          source={require('../assets/logo.png')}
         />
       </View>
 
