@@ -10,7 +10,7 @@ module.exports = {
         primary: "#3844FC",
         secondary: "#FF7826",
         tertiary: "#FFC627",
-      }
+      },
     },
   },
   plugins: [],

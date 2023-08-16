@@ -110,6 +110,10 @@ export default ({ navigation }) => {
         </View>
       </View>
     </SafeAreaView>
+    // <View className="flex-1 bg-primary">
+    //   <View className="flex-1"></View>
+    //   <View className="h-[60%] bg-white rounded-t-[35px]"></View>
+    // </View>
   )
 }
 

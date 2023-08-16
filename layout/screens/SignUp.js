@@ -71,6 +71,7 @@ const SignUp = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         value={data.firstName}
+                        placeholderTextColor="gray"
                         onChangeText={(e) => setData({ ...data, firstName: e })}
                         placeholder="Enter First Name"
                     />
@@ -78,6 +79,7 @@ const SignUp = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         value={data.lastName}
+                        placeholderTextColor="gray"
                         onChangeText={(e) => setData({ ...data, lastName: e })}
                         placeholder="Enter Last Name"
                     />
@@ -85,6 +87,7 @@ const SignUp = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         value={data.email}
+                        placeholderTextColor="gray"
                         onChangeText={(e) => setData({ ...data, email: e })}
                         placeholder="Enter Email"
                     />
@@ -92,6 +95,7 @@ const SignUp = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         value={data.password}
+                        placeholderTextColor="gray"
                         onChangeText={(e) => setData({ ...data, password: e })}
                         secureTextEntry={true}
                         placeholder="Enter Password"

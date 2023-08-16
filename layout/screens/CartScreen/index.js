@@ -64,15 +64,15 @@ const CartScreen = ({ navigation, route }) => {
     }
 
     return (
-        <View className="flex-1">
+        <View className="flex-1 bg-primary">
 
             <ScrollView>
 
                 <View className="p-3">
-                    <Text className="text-xl text-black font-bold">DELIVERY TIME</Text>
+                    <Text className="text-xl text-white font-bold">DELIVERY TIME</Text>
                     <View className="flex-row items-center mt-3">
                         <Image source={require('../../assets/clock.png')} className="w-10 h-10 mr-3" />
-                        <Text className="text-lg text-gray-600">ASAP</Text>
+                        <Text className="text-lg text-white">ASAP</Text>
                     </View>
                 </View>
 
@@ -81,20 +81,20 @@ const CartScreen = ({ navigation, route }) => {
                 {
                     cartItems?.length > 0 ?
                         <View>
-                            <View className="p-3">
-                                <Text className="text-xl font-bold mb-6">ITEMS</Text>
+                            <View className="">
+                                <Text className="text-xl text-white font-bold mb-6 px-3">ITEMS</Text>
                                 {
                                     cartItems?.map((item, index) => (
                                         <View key={index} className="w-full">
-                                            <View className="flex-row justify-between mb-2">
-                                                <Text className="text-lg text-gray-600 font-bold">{item.Plan.name} Shopify Plan</Text>
+                                            <View className="flex-row justify-between mb-2 px-3">
+                                                <Text className="text-lg text-white font-bold">{item.Plan.name} Shopify Plan</Text>
                                                 <TouchableOpacity onPress={() => onRemove(item.id)}>
-                                                    <Image source={require('../../assets/minus.png')} className="w-6 h-6" />
+                                                    <Image source={require('../../assets/trash.png')} className="w-6 h-6" />
                                                 </TouchableOpacity>
                                             </View>
-                                            <View className="w-full flex-row justify-between items-center">
-                                                <Text className="text-lg text-gray-600">Quantity: {item.quantity}x</Text>
-                                                <Text className="text-lg text-green-700">${item.quantity * item.Plan.price}</Text>
+                                            <View className="w-full flex-row justify-between items-center px-3">
+                                                <Text className="text-lg text-white">Quantity: {item.quantity}x</Text>
+                                                <Text className="text-lg text-green-100">${item.quantity * item.Plan.price}</Text>
                                             </View>
                                             <Divider my={3} />
                                         </View>
@@ -103,15 +103,15 @@ const CartScreen = ({ navigation, route }) => {
                             </View>
 
                             <View className="p-3 flex-row justify-between items-center">
-                                <Text className="text-xl font-bold mb-6">Subtotal</Text>
-                                <Text className="text-xl font-bold mb-6">${subTotal}</Text>
+                                <Text className="text-xl text-white font-bold mb-6">Subtotal</Text>
+                                <Text className="text-xl text-green-100 font-bold mb-6">${subTotal}</Text>
                             </View>
 
                             <View className="p-3 items-end mb-16">
-                                <TouchableOpacity className="bg-tertiary w-32 rounded-xl h-16 justify-center items-center"
+                                <TouchableOpacity className="bg-white w-32 rounded-xl h-16 justify-center items-center"
                                     onPress={emptyFullCart}
                                 >
-                                    <Text className="text-white text-xl font-bold">Empty Cart</Text>
+                                    <Text className="text-black text-xl font-bold">Empty Cart</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -124,10 +124,10 @@ const CartScreen = ({ navigation, route }) => {
 
             </ScrollView>
 
-            <TouchableOpacity className="bg-tertiary absolute bottom-0 w-full h-16 justify-center items-center"
+            <TouchableOpacity className="bg-white absolute bottom-2 left-2 right-2 rounded-2xl shadow-3xl h-16 justify-center items-center"
                 onPress={handleGoToMultipleCheckout}
             >
-                <Text className="text-white text-2xl font-bold">Checkout</Text>
+                <Text className="text-black text-2xl font-bold">Checkout</Text>
             </TouchableOpacity>
         </View>
     )
