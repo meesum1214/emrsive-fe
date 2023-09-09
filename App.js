@@ -17,7 +17,7 @@ function App() {
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Splash"
+          initialRouteName="login"
           screenOptions={{
             headerShown: false
           }}>

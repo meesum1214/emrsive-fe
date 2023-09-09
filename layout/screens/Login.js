@@ -5,20 +5,24 @@ import { auth } from "../firebase/config"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { userLogin } from "../API/add"
 import axios from "axios"
+import { Box, Button, Checkbox, Input } from "native-base"
 
 
 export default ({ navigation }) => {
+  const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    const getToken = async () => {
-      let token = await AsyncStorage.getItem('emrsiveToken')
-      if (token !== null) {
-        // console.log('Token retrieved successfully: ', token);
-        navigation.navigate('Drawer')
-      }
-    }
-    getToken()
-  }, [])
+  const handleClick = () => setShow(!show);
+
+  // useEffect(() => {
+  //   const getToken = async () => {
+  //     let token = await AsyncStorage.getItem('emrsiveToken')
+  //     if (token !== null) {
+  //       // console.log('Token retrieved successfully: ', token);
+  //       navigation.navigate('Drawer')
+  //     }
+  //   }
+  //   getToken()
+  // }, [])
 
   const [data, setData] = useState({
     email: '',
@@ -51,7 +55,7 @@ export default ({ navigation }) => {
       console.log("error is Login >>> ", err)
       Alert.alert("Error", err.response.data.message)
     })
-    
+
 
 
     // })
@@ -64,56 +68,142 @@ export default ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.backgroundStyle}>
+    // <SafeAreaView style={styles.backgroundStyle}>
 
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    //   <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    //     <Image
+    //       style={styles.tinyLogo}
+    //       source={require('../assets/logo.png')}
+    //     />
+    //   </View>
+
+    //   <View style={{ flex: 2, alignItems: "center" }}>
+    //     <View style={styles.loginCard}>
+    //       <Text style={styles.heading}>Login</Text>
+
+    //       <TextInput
+    //         style={styles.input}
+    //         value={data.email}
+    //         placeholderTextColor="gray"
+    //         onChangeText={(e) => setData({ ...data, email: e })}
+    //         placeholder="Enter Email"
+    //         />
+
+    //       <TextInput
+    //         placeholderTextColor="gray"
+    //         style={styles.input}
+    //         value={data.password}
+    //         onChangeText={(e) => setData({ ...data, password: e })}
+    //         secureTextEntry={true}
+    //         placeholder="Enter Password"
+    //       />
+
+    //       <TouchableOpacity style={styles.button} onPress={onLogin}>
+    //         <Text>Login</Text>
+    //       </TouchableOpacity>
+
+    //       <View style={styles.shiftLogin}>
+    //         <View>
+    //           <Text>Don't have an account? </Text>
+    //         </View>
+    //         <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+    //           <Text style={styles.LoginText}>Sign Up</Text>
+    //         </TouchableOpacity>
+    //       </View>
+
+    //     </View>
+    //   </View>
+    // </SafeAreaView>
+    <View className="flex-1 bg-primary">
+      <Image
+        source={require('../assets/login-bg.jpg')}
+        className="absolute top-0 left-0 w-full h-1/2 opacity-20"
+      />
+      <View className="flex-1 justify-center">
         <Image
-          style={styles.tinyLogo}
-          source={require('../assets/logo.png')}
+          source={require('../assets/logo-white.png')}
+          className="w-60 h-16 mt-10 mx-auto"
         />
       </View>
+      <View className="h-[70%] bg-white rounded-t-[35px] p-14 ">
+        <View className="flex-1 gap-4">
+          <View>
+            <Text className="text-primary text-4xl font-semibold ">Login</Text>
+            <Text className="text-gray-500 text-lg">Login to your existing account</Text>
+          </View>
 
-      <View style={{ flex: 2, alignItems: "center" }}>
-        <View style={styles.loginCard}>
-          <Text style={styles.heading}>Login</Text>
-
-          <TextInput
-            style={styles.input}
-            value={data.email}
-            placeholderTextColor="gray"
-            onChangeText={(e) => setData({ ...data, email: e })}
-            placeholder="Enter Email"
+          <View className="">
+            <Text className="text-gray-400 text-lg font-semibold ">Email</Text>
+            <Input
+              variant={"underlined"}
+              className="text-[15px]"
+              value={data.email}
+              onChangeText={(e) => setData({ ...data, email: e })}
+              placeholder="Enter Email"
             />
+            <Text className="text-gray-400 text-lg font-semibold mt-4">Password</Text>
+            <Input
+              secureTextEntry={true}
+              variant={"underlined"}
+              className="text-[15px]"
+              value={data.password}
+              onChangeText={(e) => setData({ ...data, password: e })}
+              placeholder="Enter Password"
+            />
+          </View>
 
-          <TextInput
-            placeholderTextColor="gray"
-            style={styles.input}
-            value={data.password}
-            onChangeText={(e) => setData({ ...data, password: e })}
-            secureTextEntry={true}
-            placeholder="Enter Password"
-          />
+          <View className="flex-row justify-between">
+            <Checkbox isChecked colorScheme="green">
+              Remember
+            </Checkbox>
 
-          <TouchableOpacity style={styles.button} onPress={onLogin}>
-            <Text>Login</Text>
-          </TouchableOpacity>
-
-          <View style={styles.shiftLogin}>
-            <View>
-              <Text>Don't have an account? </Text>
-            </View>
-            <TouchableOpacity onPress={() => navigation.navigate('signup')}>
-              <Text style={styles.LoginText}>Sign Up</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('signup')}
+            >
+              <Text className="text-gray-400">Don't have an Account? SignUp</Text>
             </TouchableOpacity>
           </View>
 
+          <View className="flex-row justify-center">
+            <TouchableOpacity
+              onPress={onLogin}
+              className="bg-primary rounded-full w-56 h-14 justify-center items-center"
+            >
+              <Text className="text-2xl font-semibold text-white">Login</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View className="items-center">
+            <Text className="text-gray-500 text-xl">Or Login with</Text>
+            <View className="flex-row gap-3 mt-1">
+              <View className="bg-[#255bd3] w-16 h-9 rounded-full justify-center items-center">
+                <Image
+                  source={require('../assets/facebook-app-symbol.png')}
+                  className="w-4 h-4"
+                />
+              </View>
+
+              <View className="bg-[#009bf6] w-16 h-9 rounded-full justify-center items-center">
+                <Image
+                  source={require('../assets/twitter.png')}
+                  className="w-4 h-4"
+                />
+              </View>
+
+              <View className="bg-[#ff0d25] w-16 h-9 rounded-full justify-center items-center">
+                <Image
+                  source={require('../assets/social.png')}
+                  className="w-4 h-4"
+                />
+              </View>
+            </View>
+          </View>
+
         </View>
+
+
       </View>
-    </SafeAreaView>
-    // <View className="flex-1 bg-primary">
-    //   <View className="flex-1"></View>
-    //   <View className="h-[60%] bg-white rounded-t-[35px]"></View>
-    // </View>
+    </View>
   )
 }
 
@@ -144,10 +234,11 @@ const styles = StyleSheet.create({
     fontWeight: 700,
   },
   input: {
-    paddingLeft: 8,
-    borderBottomColor: '#A5A5A5',
-    borderBottomWidth: 2,
-    color: '#4D4D4D',
+    // paddingLeft: 8,
+    // borderBottomColor: '#A5A5A5',
+    // borderBottomWidth: 2,
+    // color: '#4D4D4D',
+    fontSize: 16,
   },
   button: {
     alignItems: 'center',

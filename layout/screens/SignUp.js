@@ -4,6 +4,7 @@ import { Alert, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpaci
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { auth } from "../firebase/config"
 import { registerUser } from "../API/add"
+import { Checkbox, Input } from "native-base"
 
 
 const SignUp = ({ navigation }) => {
@@ -54,69 +55,150 @@ const SignUp = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.backgroundStyle}>
+        // <SafeAreaView style={styles.backgroundStyle}>
 
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        //         <Image
+        //             style={styles.tinyLogo}
+        //             source={require('../assets/logo.png')}
+        //         />
+        //     </View>
+
+
+        //     <View style={{ flex: 2, alignItems: "center" }}>
+        //         <View style={styles.sectionContainer}>
+        //             <Text style={styles.heading}>Sign Up</Text>
+
+        //             <TextInput
+        //                 style={styles.input}
+        //                 value={data.firstName}
+        //                 placeholderTextColor="gray"
+        //                 onChangeText={(e) => setData({ ...data, firstName: e })}
+        //                 placeholder="Enter First Name"
+        //             />
+
+        //             <TextInput
+        //                 style={styles.input}
+        //                 value={data.lastName}
+        //                 placeholderTextColor="gray"
+        //                 onChangeText={(e) => setData({ ...data, lastName: e })}
+        //                 placeholder="Enter Last Name"
+        //             />
+
+        //             <TextInput
+        //                 style={styles.input}
+        //                 value={data.email}
+        //                 placeholderTextColor="gray"
+        //                 onChangeText={(e) => setData({ ...data, email: e })}
+        //                 placeholder="Enter Email"
+        //             />
+
+        //             <TextInput
+        //                 style={styles.input}
+        //                 value={data.password}
+        //                 placeholderTextColor="gray"
+        //                 onChangeText={(e) => setData({ ...data, password: e })}
+        //                 secureTextEntry={true}
+        //                 placeholder="Enter Password"
+        //             />
+
+        //             <TouchableOpacity style={styles.button} onPress={onSignUp}>
+        //                 <Text>Sign Up</Text>
+        //             </TouchableOpacity>
+
+        //             <View style={styles.shiftLogin}>
+        //                 <View>
+        //                     <Text>Already have an account? </Text>
+        //                 </View>
+        //                 <TouchableOpacity onPress={() => navigation.navigate('login')}>
+        //                     <Text style={styles.LoginText}>Login</Text>
+        //                 </TouchableOpacity>
+        //             </View>
+
+        //         </View>
+        //     </View>
+        // </SafeAreaView>
+
+        <View className="flex-1 bg-primary">
+            <Image
+                source={require('../assets/login-bg.jpg')}
+                className="absolute top-0 left-0 w-full h-1/2 opacity-20"
+            />
+            <View className="flex-1 justify-center">
                 <Image
-                    style={styles.tinyLogo}
-                    source={require('../assets/logo.png')}
+                    source={require('../assets/logo-white.png')}
+                    className="w-60 h-16 mt-10 mx-auto"
                 />
             </View>
+            <View className="h-[80%] bg-white rounded-t-[35px] p-14 ">
+                <View className="flex-1 gap-6">
+                    <View>
+                        <Text className="text-primary text-4xl font-semibold ">Sign Up</Text>
+                        <Text className="text-gray-500 text-lg">Create a fresh account</Text>
+                    </View>
 
+                    <View className="">
+                        <Text className="text-gray-400 text-lg font-semibold">First Name</Text>
+                        <Input
+                            variant={"underlined"}
+                            className="text-[15px] -mt-2"
+                            value={data.firstName}
+                            onChangeText={(e) => setData({ ...data, firstName: e })}
+                            placeholder="Enter First Name"
+                        />
+                        <Text className="text-gray-400 text-lg font-semibold mt-2">Last Name</Text>
+                        <Input
+                            variant={"underlined"}
+                            className="text-[15px] -mt-2"
+                            value={data.lastName}
+                            onChangeText={(e) => setData({ ...data, lastName: e })}
+                            placeholder="Enter last Name"
+                        />
+                        <Text className="text-gray-400 text-lg font-semibold mt-2">Email</Text>
+                        <Input
+                            variant={"underlined"}
+                            className="text-[15px] -mt-2"
+                            value={data.email}
+                            onChangeText={(e) => setData({ ...data, email: e })}
+                            placeholder="Enter Email"
+                        />
+                        <Text className="text-gray-400 text-lg font-semibold mt-2">Password</Text>
+                        <Input
+                            secureTextEntry={true}
+                            variant={"underlined"}
+                            className="text-[15px] -mt-2"
+                            value={data.password}
+                            onChangeText={(e) => setData({ ...data, password: e })}
+                            placeholder="Enter Password"
+                        />
+                    </View>
 
-            <View style={{ flex: 2, alignItems: "center" }}>
-                <View style={styles.sectionContainer}>
-                    <Text style={styles.heading}>Sign Up</Text>
+                    <View className="flex-row justify-between">
+                        <Checkbox isChecked colorScheme="green">
+                            Remember
+                        </Checkbox>
 
-                    <TextInput
-                        style={styles.input}
-                        value={data.firstName}
-                        placeholderTextColor="gray"
-                        onChangeText={(e) => setData({ ...data, firstName: e })}
-                        placeholder="Enter First Name"
-                    />
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('login')}
+                        >
+                            <Text className="text-gray-400">Already have an Account? Login</Text>
+                        </TouchableOpacity>
+                    </View>
 
-                    <TextInput
-                        style={styles.input}
-                        value={data.lastName}
-                        placeholderTextColor="gray"
-                        onChangeText={(e) => setData({ ...data, lastName: e })}
-                        placeholder="Enter Last Name"
-                    />
-
-                    <TextInput
-                        style={styles.input}
-                        value={data.email}
-                        placeholderTextColor="gray"
-                        onChangeText={(e) => setData({ ...data, email: e })}
-                        placeholder="Enter Email"
-                    />
-
-                    <TextInput
-                        style={styles.input}
-                        value={data.password}
-                        placeholderTextColor="gray"
-                        onChangeText={(e) => setData({ ...data, password: e })}
-                        secureTextEntry={true}
-                        placeholder="Enter Password"
-                    />
-
-                    <TouchableOpacity style={styles.button} onPress={onSignUp}>
-                        <Text>Sign Up</Text>
-                    </TouchableOpacity>
-
-                    <View style={styles.shiftLogin}>
-                        <View>
-                            <Text>Already have an account? </Text>
-                        </View>
-                        <TouchableOpacity onPress={() => navigation.navigate('login')}>
-                            <Text style={styles.LoginText}>Login</Text>
+                    <View className="flex-row justify-center">
+                        <TouchableOpacity
+                            onPress={onSignUp}
+                            className="bg-primary rounded-full w-56 h-14 justify-center items-center"
+                        >
+                            <Text className="text-2xl font-semibold text-white">Sign Up</Text>
                         </TouchableOpacity>
                     </View>
 
                 </View>
+
+
             </View>
-        </SafeAreaView>
+        </View>
     )
 }
 

@@ -12,7 +12,7 @@ const Header = ({ navigation, total = 0 }) => {
             </TouchableOpacity>
             <Image
                 source={require('../assets/logo.png')}
-                className="w-28 h-8"
+                className="w-32 h-10"
             />
             <TouchableOpacity onPress={() => navigation.navigate('Cart')} className="relative">
                 <Image

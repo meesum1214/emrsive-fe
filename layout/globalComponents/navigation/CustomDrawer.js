@@ -5,6 +5,7 @@ import {
     DrawerItemList
 } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Image } from 'native-base';
 
 const CustomDrawer = (props) => {
     const { state, descriptors, navigation } = props;
@@ -31,13 +32,18 @@ const CustomDrawer = (props) => {
         <View className="flex-1 justify-between">
             <View className="items-center justify-center px-3 py-8 bg-primary">
                 <View className="flex-row items-center w-[95%]">
-                    <View className="rounded-full w-12 h-12 justify-center items-center bg-secondary mr-3">
+                    {/* <View className="rounded-full w-12 h-12 justify-center items-center bg-secondary mr-3">
                         <Text className="text-center text-white font-bold text-lg">{user?.firstName[0].toUpperCase()}</Text>
-                    </View>
+                    </View> */}
 
                     <View>
-                        <Text className="text-white font-bold text-lg">{user?.firstName} {user?.lastName}</Text>
-                        <Text className="text-white font-semibold">{user?.email}</Text>
+                        <Image
+                            source={require('../../assets/dp.png')}
+                            className="w-24 h-24 rounded-full mb-3"
+                            alt='Display Picture'
+                        />
+                        <Text className="text-white font-bold text-2xl">{user?.firstName} {user?.lastName}</Text>
+                        <Text className="text-white font-semibold text-lg">{user?.email}</Text>
                     </View>
                 </View>
             </View>
@@ -78,13 +84,13 @@ const CustomDrawer = (props) => {
 
 const styles = StyleSheet.create({
     drawerItem: {
-      paddingVertical: 10,
-      paddingHorizontal: 16,
+        paddingVertical: 10,
+        paddingHorizontal: 16,
     },
     drawerLabel: {
-      fontSize: 16,
-      fontWeight: 'bold',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
-  });
+});
 
 export default CustomDrawer
